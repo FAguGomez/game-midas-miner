@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../external/include/sdl/SDL.h"
+#undef main
 #include <cassert>
 #include <time.h>
 #include <vector>
@@ -9,8 +10,12 @@
 #include "Gem.h"
 #include "GemChain.h"
 #include "GemSwap.h"
-#include "TextHandler.h"
+//#include "TextHandler.h"
+#include "Timer.h"
 #include "WindowHandler.h"
+
+#include <king/Engine.h>
+#include <king/Updater.h>
 
 using namespace std;
 
@@ -68,5 +73,6 @@ private:
 	vector<Gem*> _mFallingGems;
 	vector<Gem*> _mNewGems;
 	Swap *_mSwap;
-	TextHandler *_mTextHandler;
+	//TextHandler *_mTextHandler;
+	Timer *_mTimer;
 };

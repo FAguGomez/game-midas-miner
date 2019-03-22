@@ -11,9 +11,13 @@
 
 using namespace std;
 
+FILE _iob[] = { *stdin, *stdout, *stderr };
+extern "C" FILE * __cdecl __iob_func(void) { return _iob; }
+
 int main(int argc, char* args[])
 {
 	WindowHandler *myWindow = new WindowHandler(800, 600);
+
 	Game *myGame = new Game(myWindow->GetRenderer());
 	myGame->SetState(Game::LOADING);
 	myGame->LoadGame(1);

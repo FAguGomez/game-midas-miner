@@ -1,5 +1,7 @@
 #include "../headers/Game.h"
 
+using namespace std;
+
 Game::Game(SDL_Renderer *r) {
 	_mGameNumber = 0;
 	_mScore = 0;
@@ -19,6 +21,7 @@ Game::Game(SDL_Renderer *r) {
 	_mBackground = new Background(_mRenderer);
 	//_mTextHandler = new TextHandler(_mRenderer, 30);
 	//_mTextHandler->SetFontColor({ 255, 250, 0, 255 });
+	_mTimer = new Timer(0);
 
 	for (int r = 0; r < Game::ROWS; r++) {
 		for (int c = 0; c < Game::COLS; c++) {
@@ -67,19 +70,19 @@ const char* Game::GetColorFile(unsigned short color) const {
 		colorFile = "../bin/assets/Red.png";
 		break;
 	case Gem::BLUE:
-		colorFile = "../assets/Blue.png";
+		colorFile = "../bin/assets/Blue.png";
 		break;
 	case Gem::YELLOW:
-		colorFile = "../assets/Yellow.png";
+		colorFile = "../bin/assets/Yellow.png";
 		break;
 	case Gem::GREEN:
-		colorFile = "../assets/Green.png";
+		colorFile = "../bin/assets/Green.png";
 		break;
 	case Gem::PURPLE:
-		colorFile = "../assets/Purple.png";
+		colorFile = "../bin/assets/Purple.png";
 		break;
 	default:
-		colorFile = "../assets/Yellow.png";
+		colorFile = "../bin/assets/Yellow.png";
 		break;
 	}
 
@@ -90,7 +93,7 @@ void Game::LoadGame(unsigned short gameNumber) {
 	SDL_Rect clip = { 0, 0, 0, 0 };
 	SDL_Rect pos = { 0, 0, 0, 0 };
 	_mGameNumber = gameNumber;
-	//_mTimer->SetTime(60); //60 seconds to beat, this could be set when loading the level from file
+	_mTimer->SetTime(60); //60 seconds to beat, this could be set when loading the level from file
 
 	unsigned short layout[8][8] = {
 		1, 1, 1, 1, 1, 1, 1, 1,
@@ -154,14 +157,14 @@ void Game::Render() const {
 		}
 	}
 
-	/*_mTextHandler->Render("Score: ", { 10, 100, 0, 0 });
-	_mTextHandler->Render(_mScoreString, { 120, 100, 0, 0 });
-	_mTextHandler->Render("Time left: ", { 10, 150, 0, 0 });
-	_mTextHandler->Render(_mTimer->GetTimeStr(), { 180, 150, 0, 0 });
-	*/
-	//if (_mState == Level::FINISHED)
-		/*_mTextHandler->Render("GAME OVER", { 400, 50, 0, 0 });
-		*/
+	//_mTextHandler->Render("Score: ", { 10, 100, 0, 0 });
+	//_mTextHandler->Render(_mScoreString, { 120, 100, 0, 0 });
+	//_mTextHandler->Render("Time left: ", { 10, 150, 0, 0 });
+	//_mTextHandler->Render(_mTimer->GetTimeStr(), { 180, 150, 0, 0 });
+	
+	//if (_mGameState == Game::FINISHED)
+		//_mTextHandler->Render("GAME OVER", { 400, 50, 0, 0 });
+		
 	SDL_RenderPresent(_mRenderer);
 }
 
@@ -181,18 +184,18 @@ void Game::Update() {
 
 	case Game::IDLE:
 		//_mTimer->Update();
-		//if (_mTimer->Finished())
-			//_mState = Level::FINISHED;
-
+		//if (_mTimer->Finished()) {
+			//_mGameState = Game::FINISHED;
+		//}
 		if (!_mGemChains.empty() || !_mFallingGems.empty() || !_mNewGems.empty()) {
-			_mGameState = Game::PROCESSING;
+			//_mGameState = Game::PROCESSING;
 		}
 		break;
 
 	case Game::SWAPPING:
 		assert(_mSwap);
 
-		//_mTimer->Update();
+		_mTimer->Update();
 		_mSwap->Update();
 		if (_mSwap->Done())
 		{
@@ -222,7 +225,7 @@ void Game::Update() {
 	case Game::ROLLING_BACK:
 		assert(_mSwap);
 
-		//_mTimer->Update();
+		_mTimer->Update();
 		_mSwap->Update();
 		if (_mSwap->Done())
 		{
@@ -238,7 +241,7 @@ void Game::Update() {
 		break;
 
 	case Game::PROCESSING:
-		//_mTimer->Update();
+		_mTimer->Update();
 		RemoveGemChains();
 		FillRemovedChainsHoles();
 		AnimateFallingGems();
@@ -251,7 +254,7 @@ void Game::Update() {
 		break;
 
 	case Game::END_PROCESSING:
-		//_mTimer->Update();
+		_mTimer->Update();
 		//Check if moving rocs produced more chains
 		FindHorizontalChains();
 		FindVerticalChains();

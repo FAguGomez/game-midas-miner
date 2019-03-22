@@ -20,7 +20,7 @@
 
 namespace King {
 	static const int WindowWidth = 800;
-	static const int WindowHeight = 600;
+	static const int WindowHeight = 600;	//Height y Width de la pantalla de juego
 	static const float MaxFrameTicks = 300.0f;
 	static const float TextScale = 0.5f;
 
@@ -64,7 +64,7 @@ namespace King {
 		SDL_GL_SetSwapInterval(1);
 
 		glEnable(GL_TEXTURE_2D);
-		glClearColor(0.0, 0.0, 0.0, 1.0);
+		glClearColor(0.0, 0.0, 0.0, 1.0);	//COLOR DE FONDO
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
@@ -72,14 +72,14 @@ namespace King {
 		std::string background = assets; background += "/BackGround.jpg";
 		std::string blue = assets; blue += "/Blue.png";
 		std::string green = assets; green += "/Green.png";
-		std::string purple = assets; purple += "/Purple.png";
+		std::string purple = assets; purple += "/Purple.png";		//TEXTURAS
 		std::string red = assets; red += "/Red.png";
 		std::string yellow = assets; yellow += "/Yellow.png";
 		std::string font = assets; font += "/berlin_sans_demi_72_0.png";
 
-		mPimpl->mSdlSurfaceContainer[Engine::TEXTURE_BACKGROUND].reset(new SdlSurface(background.c_str()));
+		mPimpl->mSdlSurfaceContainer[Engine::TEXTURE_BACKGROUND].reset(new SdlSurface(background.c_str()));	//Porq Background invisible?
 		mPimpl->mSdlSurfaceContainer[Engine::TEXTURE_BLUE].reset(new SdlSurface(blue.c_str()));
-		mPimpl->mSdlSurfaceContainer[Engine::TEXTURE_GREEN].reset(new SdlSurface(green.c_str()));
+		mPimpl->mSdlSurfaceContainer[Engine::TEXTURE_GREEN].reset(new SdlSurface(green.c_str()));	//ASIGNACION TEXTURAS
 		mPimpl->mSdlSurfaceContainer[Engine::TEXTURE_PURPLE].reset(new SdlSurface(purple.c_str()));
 		mPimpl->mSdlSurfaceContainer[Engine::TEXTURE_RED].reset(new SdlSurface(red.c_str()));
 		mPimpl->mSdlSurfaceContainer[Engine::TEXTURE_YELLOW].reset(new SdlSurface(yellow.c_str()));
@@ -128,7 +128,7 @@ namespace King {
 		return mPimpl->mSdlSurfaceContainer[texture]->Width();
 	}
 
-	void Engine::Render(Engine::Texture texture, const glm::mat4& transform) {
+	void Engine::Render(Engine::Texture texture, const glm::mat4& transform) {		//Testear
 		glLoadMatrixf(reinterpret_cast<const float*>(&transform));
 
 		SdlSurface& surface = *mPimpl->mSdlSurfaceContainer[texture];
@@ -143,7 +143,7 @@ namespace King {
 		glEnd();
 	}
 
-	void Engine::Render(Texture texture, float x, float y, float rotation) {
+	void Engine::Render(Texture texture, float x, float y, float rotation) {		//Ubicar textura
 		glm::mat4 transformation;
 		transformation = glm::translate(transformation, glm::vec3(x, y, 0.0f));
 		if (rotation) {
@@ -169,7 +169,7 @@ namespace King {
 		return advance*TextScale;
 	}
 
-	void Engine::Write(const char* text, const glm::mat4& transform) {
+	void Engine::Write(const char* text, const glm::mat4& transform) {		//Testear
 		glLoadMatrixf(reinterpret_cast<const float*>(&transform));
 		int advance = 0;
 		for (; *text;++text) {
@@ -200,7 +200,7 @@ namespace King {
 		}
 	}
 
-	void Engine::Write(const char* text, float x, float y, float rotation) {
+	void Engine::Write(const char* text, float x, float y, float rotation) {		//Ubicar texto
 		glm::mat4 transformation;
 		transformation = glm::translate(transformation, glm::vec3(x, y, 0.0f));
 		if (rotation) {

@@ -69,6 +69,9 @@
     <ClCompile Include="..\src\Texture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\Timer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\src\WindowHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -95,13 +98,13 @@
     <ClInclude Include="..\external\include\king\Updater.h">
       <Filter>Header Files\kinglib</Filter>
     </ClInclude>
-    <ClInclude Include="..\headers\Game.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\headers\Background.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\headers\DropGem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\headers\Game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\headers\Gem.h">
@@ -122,33 +125,11 @@
     <ClInclude Include="..\headers\Texture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\headers\Timer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\headers\WindowHandler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="..\..\assets\BackGround.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\assets\Blue.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\assets\Green.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\assets\Purple.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\assets\Red.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\assets\Yellow.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-  </ItemGroup>
-  <ItemGroup>
-    <Font Include="..\..\assets\font.ttf">
-      <Filter>Resource Files</Filter>
-    </Font>
   </ItemGroup>
 </Project>
