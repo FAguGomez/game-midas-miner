@@ -1,7 +1,7 @@
 #pragma once
-#include <Sdl.h>
-#include <SDL_image.h>
-#include "Log_handler.h"
+#include "../external/include/sdl/SDL.h"
+#include "../external/include/sdl/SDL_image.h"
+#include "../headers/LogHandler.h"
 
 class Texture {
 public:
@@ -16,8 +16,8 @@ public:
 	void Render();
 
 protected:
-	SDL_Renderer *Renderer;
-	SDL_Texture *Texture;
-	SDL_Rect Clip;
-	SDL_Rect Pos;
+	SDL_Renderer *_mRenderer;
+	SDL_Texture *_mTexture;
+	SDL_Rect _mClip;
+	SDL_Rect _mPos;
 };
